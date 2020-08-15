@@ -41,7 +41,7 @@ function App() {
           Learn React
         </a>
       </header>
-      {<button onClick={installApp}>Install app!</button>}
+      <button onClick={installApp}>Install app!</button>
     </div>
   );
 }
