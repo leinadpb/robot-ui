@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { LoginWrapper, Header, LoginForm, Footer, LoginButton } from './Login.styles';
-import { FormControl, FormLabel, FormHelperText, Input } from '@chakra-ui/core';
+import { LoginWrapper, Header, LoginForm, Footer, LoginButton, FormLabelWrapper } from './Login.styles';
+import { FormControl, FormHelperText, Input } from '@chakra-ui/core';
 import { useHistory } from 'react-router-dom';
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState(undefined);
+  const [password, setPassword] = useState(undefined);
   const history = useHistory();
 
   useEffect(() => {}, []);
@@ -20,6 +20,14 @@ const Login = () => {
     }, 1000);
   };
 
+  const onEmailChange = (target) => {
+    setEmail(target.value);
+  };
+
+  const onPassswordChange = (target) => {
+    setPassword(target.value);
+  };
+
   return (
     <LoginWrapper>
       <Header>
@@ -27,13 +35,13 @@ const Login = () => {
       </Header>
       <LoginForm>
         <FormControl isRequired>
-          <FormLabel htmlFor="email">Correo electrónico</FormLabel>
-          <Input type="email" id="email" aria-describedby="email-helper-text" onChange={(e) => setEmail(e.target.value)} value={email} />
+          <FormLabelWrapper htmlFor="email">Correo electrónico</FormLabelWrapper>
+          <Input type="email" id="email" aria-describedby="email-helper-text" onChange={(e) => onEmailChange(e.currentTarget)} />
           <FormHelperText id="email-helper-text">Nunca compartiremos tu correo.</FormHelperText>
         </FormControl>
         <FormControl isRequired>
-          <FormLabel htmlFor="password">Contraseña</FormLabel>
-          <Input type="password" id="password" aria-describedby="password-helper-text" onChange={(e) => setPassword(e.target.value)} value={password} />
+          <FormLabelWrapper htmlFor="password">Contraseña</FormLabelWrapper>
+          <Input type="password" id="password" aria-describedby="password-helper-text" onChange={(e) => onPassswordChange(e.currentTarget)} />
         </FormControl>
         <LoginButton onClick={() => makeLogin()} isLoading={loading}>
           Iniciar sesión

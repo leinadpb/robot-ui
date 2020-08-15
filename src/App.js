@@ -10,16 +10,23 @@ import Auth from './auth/Auth';
 import Home from './app/home/Home';
 
 const InstallButton = styled.div`
-  width: 60vw;
-  height: 180px;
-  background-color: rgba(0, 0, 0, 0.8);
+  width: 300px;
+  height: 40px;
+  background-color: #0060ff;
+  position: fixed;
+  bottom: 12px;
+  left: calc((100vw - 300px) / 2);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   span {
     font-size: 1.15rem;
     color: white;
   }
   &:hover {
     cursor: pointer;
-    color: rgba(0, 0, 0, 1);
+    background-color: #0081ff;
   }
 `;
 
@@ -78,9 +85,11 @@ function App() {
         <Route path="/app/home" component={Home} exact />
         <Route component={NotFound} />
       </Switch>
-      <InstallButton onClick={installApp}>
-        <span>Instalar en mi dispositivo</span>
-      </InstallButton>
+      {!!deferredPrompt && (
+        <InstallButton onClick={installApp}>
+          <span>Instalar en mi dispositivo</span>
+        </InstallButton>
+      )}
     </AppTemplate>
   );
 }
