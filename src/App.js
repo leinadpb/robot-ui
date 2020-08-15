@@ -40,8 +40,8 @@ function App() {
         <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
           Learn React
         </a>
+        <button onClick={installApp}>Install app!</button>
       </header>
-      <button onClick={installApp}>Install app!</button>
     </div>
   );
 }
