@@ -1,5 +1,5 @@
 let CACHE_NAME = 'robot-ui';
-let urlsToCache = ['/'];
+let urlsToCache = ['/', '/auth', '/auth/login'];
 
 // Install a service worker
 self.addEventListener('install', (event) => {
