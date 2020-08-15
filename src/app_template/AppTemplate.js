@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { AppTemplateWrapper } from './AppTemplate.styles';
+import { AppTemplateWrapper, AccountArea, CameraArea, ContentArea, BackArea, HomeArea } from './AppTemplate.styles';
+import { BsPerson, BsCamera, BsReply, BsHouse } from 'react-icons/bs';
 
 const AppTemplate = ({ children }) => {
   const location = useLocation();
@@ -15,9 +16,19 @@ const AppTemplate = ({ children }) => {
   if (useTemplate) {
     return (
       <AppTemplateWrapper>
-        <div>Header bar</div>
-        <div>{children}</div>
-        <div>Footer bar</div>
+        <AccountArea>
+          <BsPerson />
+        </AccountArea>
+        <CameraArea>
+          <BsCamera />
+        </CameraArea>
+        <ContentArea>{children}</ContentArea>
+        <BackArea>
+          <BsReply />
+        </BackArea>
+        <HomeArea>
+          <BsHouse />
+        </HomeArea>
       </AppTemplateWrapper>
     );
   }
