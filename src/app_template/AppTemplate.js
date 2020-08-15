@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { AppTemplateWrapper } from './AppTemplate.styles';
 
 const AppTemplate = ({ children }) => {
   const location = useLocation();
@@ -13,11 +14,11 @@ const AppTemplate = ({ children }) => {
 
   if (useTemplate) {
     return (
-      <div>
+      <AppTemplateWrapper>
         <div>Header bar</div>
         <div>{children}</div>
         <div>Footer bar</div>
-      </div>
+      </AppTemplateWrapper>
     );
   }
 

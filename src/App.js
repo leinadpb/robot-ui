@@ -7,6 +7,7 @@ import NotFound from './not_found/NotFound';
 import AppTemplate from './app_template/AppTemplate';
 import styled from 'styled-components';
 import Auth from './auth/Auth';
+import Home from './app/home/Home';
 
 const InstallButton = styled.div`
   width: 60vw;
@@ -73,6 +74,8 @@ function App() {
         <Route path="/auth" component={Auth} exact />
         <Route path="/auth/login" component={Login} exact />
         <Route path="/about" component={About} exact />
+
+        <Route path="/app/home" component={Home} exact />
         <Route component={NotFound} />
       </Switch>
       <InstallButton onClick={installApp}>
