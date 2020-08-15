@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Switch, useLocation, useHistory } from 'react-router-dom';
 import './App.css';
-import Login from './home/login/Login';
+import Login from './auth/login/Login';
 import About from './about/About';
 import NotFound from './not_found/NotFound';
 import AppTemplate from './app_template/AppTemplate';
 import styled from 'styled-components';
-import Home from './home/Home';
+import Auth from './auth/Auth';
 
 const InstallButton = styled.div`
   width: 60vw;
@@ -69,7 +69,8 @@ function App() {
   return (
     <AppTemplate>
       <Switch>
-        <Route path="/auth" component={Home} exact />
+        <Route path="/" component={Auth} exact />
+        <Route path="/auth" component={Auth} exact />
         <Route path="/auth/login" component={Login} exact />
         <Route path="/about" component={About} exact />
         <Route component={NotFound} />

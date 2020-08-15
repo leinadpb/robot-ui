@@ -1,8 +1,8 @@
 import React from 'react';
-import { Wrapper, Header, Actions, Action, ActionText } from './Home.styles';
+import { Wrapper, Header, Actions, Action, ActionText } from './Auth.styles';
 import { useHistory } from 'react-router-dom';
 
-const Home = () => {
+const Auth = () => {
   const history = useHistory();
 
   return (
@@ -25,4 +25,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Auth;
