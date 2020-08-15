@@ -15,7 +15,7 @@ function App() {
   }, []);
 
   const installApp = () => {
-    if (!deferredPrompt) {
+    if (!!deferredPrompt) {
       // Show the prompt
       deferredPrompt.prompt();
       // Wait for the user to respond to the prompt
