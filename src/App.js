@@ -3,16 +3,14 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const [showInstallButton, setShowInstallButton] = useState(false);
-
-  let deferredPrompt;
+  const [deferredPrompt, setDeferredPrompt] = useState(undefined);
 
   useEffect(() => {
     window.addEventListener('beforeinstallprompt', (e) => {
       // Prevent the mini-infobar from appearing on mobile
       e.preventDefault();
       // Stash the event so it can be triggered later.
-      deferredPrompt = e;
+      setDeferredPrompt(e);
     });
   }, []);
 
@@ -27,7 +25,7 @@ function App() {
         } else {
           console.log('User dismissed the A2HS prompt');
         }
-        deferredPrompt = null;
+        setDeferredPrompt(undefined);
       });
     }
   };
