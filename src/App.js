@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Switch, useLocation, useHistory } from 'react-router-dom';
-import './App.css';
 import Login from './auth/login/Login';
 import About from './about/About';
 import NotFound from './not_found/NotFound';
@@ -81,7 +80,7 @@ function App() {
         <Route path="/auth/login" component={Login} exact />
         <Route path="/about" component={About} exact />
 
-        <Route path="/app" component={Home} />
+        <Route path="/app" component={Home} exact />
         <Route path="/" component={Auth} />
         <Route component={NotFound} />
       </Switch>

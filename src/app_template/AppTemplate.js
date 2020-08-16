@@ -8,10 +8,13 @@ const AppTemplate = ({ children }) => {
   const [useTemplate, setUseTemplate] = useState(true);
 
   useEffect(() => {
+    // console.log('location change in template, ', location.pathname, useTemplate);
     if (location.pathname.includes('auth') || location.pathname.includes('about')) {
       setUseTemplate(false);
+    } else {
+      setUseTemplate(true);
     }
-  }, [location.pathname]);
+  }, [location]);
 
   if (useTemplate) {
     return (

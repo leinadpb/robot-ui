@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { LoginWrapper, Header, LoginForm, Footer, LoginButton, FormLabelWrapper } from './Login.styles';
 import { FormControl, FormHelperText, Input } from '@chakra-ui/core';
 import { useHistory } from 'react-router-dom';
@@ -8,8 +8,6 @@ const Login = () => {
   const [email, setEmail] = useState(undefined);
   const [password, setPassword] = useState(undefined);
   const history = useHistory();
-
-  useEffect(() => {}, []);
 
   const makeLogin = async () => {
     setLoading(true);
