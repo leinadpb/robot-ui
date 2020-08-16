@@ -7,6 +7,8 @@ import AppTemplate from './app_template/AppTemplate';
 import styled from 'styled-components';
 import Auth from './auth/Auth';
 import Home from './app/home/Home';
+import { useCookies } from 'react-cookie';
+import useAuthAPI from './api/authAPI';
 
 const InstallButton = styled.div`
   width: 300px;
@@ -34,6 +36,9 @@ function App() {
   const [deferredPrompt, setDeferredPrompt] = useState(undefined);
   const location = useLocation();
   const history = useHistory();
+  const [cookies] = useCookies(['token']);
+
+  const { info } = useAuthAPI();
 
   useEffect(() => {
     window.addEventListener('beforeinstallprompt', (e) => {
@@ -48,6 +53,31 @@ function App() {
     }
     setLoading(false);
   }, [history, location.pathname]);
+
+  useEffect(() => {
+    const getUserInfo = async () => {
+      let rs = await info(cookies.token);
+      if (rs.success) {
+        let userInfo = {
+          ...rs.data,
+        };
+        console.log(userInfo);
+        history.push('/app');
+      } else {
+        history.push('/auth');
+      }
+    };
+
+    // Trigger on each browser refresh
+    if (!!cookies.token) {
+      // Get user info
+      getUserInfo();
+    } else {
+      // Show Auth
+      history.push('/auth');
+    }
+    // eslint-disable-next-line
+  }, []);
 
   const installApp = () => {
     if (!!deferredPrompt) {
