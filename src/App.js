@@ -77,12 +77,12 @@ function App() {
   return (
     <AppTemplate>
       <Switch>
-        <Route path="/" component={Auth} exact />
         <Route path="/auth" component={Auth} exact />
         <Route path="/auth/login" component={Login} exact />
         <Route path="/about" component={About} exact />
 
-        <Route path="/app/home" component={Home} exact />
+        <Route path="/app" component={Home} />
+        <Route path="/" component={Auth} />
         <Route component={NotFound} />
       </Switch>
       {!!deferredPrompt && (

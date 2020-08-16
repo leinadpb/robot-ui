@@ -16,7 +16,7 @@ const Login = () => {
     console.log(email, password);
     setTimeout(() => {
       setLoading(false);
-      history.push('/app/home');
+      history.push('/app');
     }, 1000);
   };
 
