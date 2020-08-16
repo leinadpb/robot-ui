@@ -1,6 +1,6 @@
 {
-  "short_name": "Robot GUI",
-  "name": "ROBI GUI",
+  "short_name": "ROBI Control",
+  "name": "ROBI Remote Control",
   "icons": [
     {
       "src": "favicon.ico",
