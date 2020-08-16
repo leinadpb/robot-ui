@@ -1,8 +1,7 @@
 import React from 'react';
 
-const Home = () => {
-  console.log('in home!');
-  return <div style={{ color: 'white' }}>Home... to be continued</div>;
+const Home = ({ user }) => {
+  return <div style={{ color: 'white' }}>{!!user ? `Hey ${user.username}! This page is not ready yet.` : ' This page is not ready yet.'}</div>;
 };
 
 export default Home;

@@ -37,6 +37,7 @@ function App() {
   const location = useLocation();
   const history = useHistory();
   const [cookies] = useCookies(['token']);
+  const [loggedUser, setLoggedUser] = useState(undefined);
 
   const { info } = useAuthAPI();
 
@@ -56,12 +57,13 @@ function App() {
 
   useEffect(() => {
     const getUserInfo = async () => {
-      let rs = await info(cookies.token);
+      let rs = await info(`Bearer ${cookies.token}`);
       if (rs.success) {
         let userInfo = {
           ...rs.data,
         };
         console.log(userInfo);
+        setLoggedUser(userInfo);
         history.push('/app');
       } else {
         history.push('/auth');
@@ -69,9 +71,10 @@ function App() {
     };
 
     // Trigger on each browser refresh
+    console.log(cookies);
     if (!!cookies.token) {
       // Get user info
-      getUserInfo();
+      getUserInfo(cookies.token);
     } else {
       // Show Auth
       history.push('/auth');
@@ -95,6 +98,10 @@ function App() {
     }
   };
 
+  const updateLoggedUser = (user) => {
+    setLoggedUser(user);
+  };
+
   if (loading) {
     return (
       <div>
@@ -106,13 +113,14 @@ function App() {
   return (
     <AppTemplate>
       <Switch>
-        <Route path="/auth" component={Auth} exact />
-        <Route path="/auth/login" component={Login} exact />
-        <Route path="/about" component={About} exact />
+        <Route path="/auth" render={() => <Auth user={loggedUser} />} exact />
+        <Route path="/auth/login" render={() => <Login user={loggedUser} setLoggedUser={(user) => updateLoggedUser(user)} />} exact />
+        <Route path="/about" render={() => <About user={loggedUser} />} exact />
 
-        <Route path="/app" component={Home} exact />
-        <Route path="/" component={Auth} />
-        <Route component={NotFound} />
+        <Route path="/app" render={() => <Home user={loggedUser} />} exact />
+
+        <Route path="/" render={() => <Auth user={loggedUser} />} />
+        <Route render={() => <NotFound user={loggedUser} />} />
       </Switch>
       {!!deferredPrompt && (
         <InstallButton onClick={installApp}>

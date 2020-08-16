@@ -2,24 +2,40 @@ import React, { useState } from 'react';
 import { LoginWrapper, Header, LoginForm, Footer, LoginButton, FormLabelWrapper } from './Login.styles';
 import { FormControl, FormHelperText, Input } from '@chakra-ui/core';
 import { useHistory } from 'react-router-dom';
+import useAuthAPI from '../../api/authAPI';
+import { useCookies } from 'react-cookie';
 
-const Login = () => {
+const Login = ({ setLoggedUser }) => {
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState(undefined);
+  const [username, setUsername] = useState(undefined);
   const [password, setPassword] = useState(undefined);
   const history = useHistory();
 
+  // eslint-disable-next-line
+  const [cookies, setCookie] = useCookies(['token']);
+
+  const { login } = useAuthAPI();
+
   const makeLogin = async () => {
     setLoading(true);
-    console.log(email, password);
-    setTimeout(() => {
-      setLoading(false);
+    let rs = await login({
+      username: username,
+      password: password,
+    });
+    if (rs.success) {
+      console.log('set logged user', rs.data, setLoggedUser);
+      if (!!setLoggedUser) {
+        console.log('set logged user', rs.data);
+        setLoggedUser(rs.data);
+      }
+      setCookie('token', rs.data.accessToken, { path: '/' });
       history.push('/app');
-    }, 1000);
+    }
+    setLoading(false);
   };
 
   const onEmailChange = (target) => {
-    setEmail(target.value);
+    setUsername(target.value);
   };
 
   const onPassswordChange = (target) => {
@@ -33,9 +49,9 @@ const Login = () => {
       </Header>
       <LoginForm>
         <FormControl isRequired>
-          <FormLabelWrapper htmlFor="email">Correo electrónico</FormLabelWrapper>
-          <Input type="email" id="email" aria-describedby="email-helper-text" onChange={(e) => onEmailChange(e.currentTarget)} />
-          <FormHelperText id="email-helper-text">Nunca compartiremos tu correo.</FormHelperText>
+          <FormLabelWrapper htmlFor="email">Usuario</FormLabelWrapper>
+          <Input type="text" id="email" aria-describedby="email-helper-text" onChange={(e) => onEmailChange(e.currentTarget)} />
+          <FormHelperText id="email-helper-text">Nunca compartiremos tus datos personales.</FormHelperText>
         </FormControl>
         <FormControl isRequired>
           <FormLabelWrapper htmlFor="password">Contraseña</FormLabelWrapper>
