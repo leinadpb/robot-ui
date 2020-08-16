@@ -24,7 +24,7 @@
       "sizes": "180x180"
     }
   ],
-  "start_url": ".",
+  "start_url": "/auth",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#23262e"
