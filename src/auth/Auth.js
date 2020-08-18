@@ -26,7 +26,7 @@ const Auth = ({ user }) => {
           <span>Registrarse</span>
         </Action>
         <ActionText>
-          <span>Olvidaste tu contrasena?</span>
+          <span>Olvidaste tu contraseña?</span>
         </ActionText>
       </Actions>
     </Wrapper>
