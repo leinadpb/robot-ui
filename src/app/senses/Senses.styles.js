@@ -45,12 +45,14 @@ export const AppItemWrapper = styled.div`
   img {
     filter: brightness(0) invert(1);
     max-width: 60%;
+    max-height: 70%;
   }
 
   @media screen and (orientation: landscape) {
     width: 35%;
     img {
       max-width: 40%;
+      max-height: 70%;
     }
   }
 `;

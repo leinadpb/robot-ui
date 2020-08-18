@@ -48,6 +48,7 @@ export const ResalterImage = styled.div`
 export const ResalterControl = styled.div`
   width: 100%;
   height: 100%;
+  padding: 24px;
   display: flex;
   justify-content: flex-start;
   align-items: center;

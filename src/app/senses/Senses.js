@@ -31,7 +31,7 @@ const Senses = () => {
           </AppItem>
           <AppItem>
             <AppItemWrapper>
-              <img src={VibrationImage} alt="ROBI > Vibration" />
+              <img src={VibrationImage} alt="ROBI > Vibration" height="80%" />
             </AppItemWrapper>
           </AppItem>
         </AppItems>

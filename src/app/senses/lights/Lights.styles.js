@@ -51,3 +51,7 @@ export const AppItemWrapper = styled.div`
     }
   }
 `;
+
+export const AdjusterWrapper = styled.div`
+  padding: 16px;
+`;

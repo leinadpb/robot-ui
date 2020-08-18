@@ -21,7 +21,7 @@ export const AccountArea = styled.div`
   background-color: #2d3247;
   border-radius: 0% 0% 60% 0%;
   svg {
-    font-size: 2.3rem;
+    font-size: 3rem;
   }
 `;
 
@@ -50,7 +50,7 @@ export const ContentArea = styled.div`
   height: 100%;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 8fr 7fr;
+  grid-template-rows: 4fr 7fr;
   @media screen and (orientation: landscape) {
     grid-template-rows: auto;
   }
@@ -66,7 +66,7 @@ export const CameraArea = styled.div`
   align-items: center;
   border-radius: 0% 60% 0% 0%;
   svg {
-    font-size: 2.3rem;
+    font-size: 3rem;
   }
 `;
 
@@ -82,7 +82,7 @@ export const BackArea = styled.div`
   background-color: #2d3247;
   border-radius: 0% 0% 0% 60%;
   svg {
-    font-size: 2.3rem;
+    font-size: 3rem;
   }
 `;
 
@@ -97,6 +97,6 @@ export const HomeArea = styled.div`
   background-color: #2d3247;
   border-radius: 60% 0% 0% 0%;
   svg {
-    font-size: 2.3rem;
+    font-size: 3rem;
   }
 `;
