@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+export const LightsWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
 export const AppItems = styled.div`
   width: 100%;
   height: 100%;
@@ -37,12 +42,10 @@ export const AppItemWrapper = styled.div`
     background-color: #363b50;
   }
   img {
-    filter: brightness(0) invert(1);
-    max-width: 60%;
+    max-width: 80%;
   }
-
   @media screen and (orientation: landscape) {
-    width: 50%;
+    width: 35%;
     img {
       max-width: 40%;
     }

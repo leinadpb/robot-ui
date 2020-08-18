@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Wrapper, Header, Actions, Action, ActionText } from './Auth.styles';
 import { useHistory } from 'react-router-dom';
 
-const Auth = () => {
+const Auth = ({ user }) => {
   const history = useHistory();
+
+  useEffect(() => {
+    if (!!user && !!user.id) {
+      history.push('/app');
+    }
+    // eslint-disable-next-line
+  }, [user]);
 
   return (
     <Wrapper>

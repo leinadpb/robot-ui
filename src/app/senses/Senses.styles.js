@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+export const SensesWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+`;
+
 export const AppItems = styled.div`
   width: 100%;
   height: 100%;
@@ -42,7 +48,7 @@ export const AppItemWrapper = styled.div`
   }
 
   @media screen and (orientation: landscape) {
-    width: 50%;
+    width: 35%;
     img {
       max-width: 40%;
     }

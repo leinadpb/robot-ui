@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { AppTemplateWrapper, AccountArea, CameraArea, ContentArea, BackArea, HomeArea } from './AppTemplate.styles';
-import { BsPerson, BsCamera, BsReply, BsHouse } from 'react-icons/bs';
+import { useLocation, useHistory } from 'react-router-dom';
+import { AppTemplateWrapper, AccountArea, CameraArea, ContentArea, BackArea, HomeArea, LogoWrapper, ContentScreen } from './AppTemplate.styles';
+import { BsPerson, BsReply, BsHouse } from 'react-icons/bs';
+import RobiLOGO from '../images/LOGO_ROBI.svg';
 
 const AppTemplate = ({ children }) => {
+  const history = useHistory();
   const location = useLocation();
   const [useTemplate, setUseTemplate] = useState(true);
 
@@ -22,14 +24,17 @@ const AppTemplate = ({ children }) => {
         <AccountArea>
           <BsPerson />
         </AccountArea>
-        <CameraArea>
-          <BsCamera />
-        </CameraArea>
-        <ContentArea>{children}</ContentArea>
-        <BackArea>
+        <CameraArea>{/* <BsCamera /> */}</CameraArea>
+        <ContentArea>
+          <LogoWrapper>
+            <img src={RobiLOGO} alt="ROBI" />
+          </LogoWrapper>
+          <ContentScreen>{children}</ContentScreen>
+        </ContentArea>
+        <BackArea onClick={() => history.goBack()}>
           <BsReply />
         </BackArea>
-        <HomeArea>
+        <HomeArea onClick={() => history.push('/app')}>
           <BsHouse />
         </HomeArea>
       </AppTemplateWrapper>
