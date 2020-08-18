@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Wrapper, Header, Actions, Action, ActionText } from './Auth.styles';
 import { useHistory } from 'react-router-dom';
+import LogoROBI from '../images/LOGO_ROBI.svg';
 
 const Auth = ({ user }) => {
   const history = useHistory();
@@ -15,7 +16,7 @@ const Auth = ({ user }) => {
   return (
     <Wrapper>
       <Header>
-        <span style={{ fontSize: '2.5rem', fontWeight: '600' }}>ROBI</span>
+        <img src={LogoROBI} alt="Logo ROBI" />
       </Header>
       <Actions>
         <Action onClick={() => history.push('/auth/login')}>
