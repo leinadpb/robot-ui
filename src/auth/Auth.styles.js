@@ -35,6 +35,7 @@ export const Action = styled(Button)`
   width: 100%;
   background-color: #1c1e26 !important;
   color: white;
+  padding: 16px;
 `;
 
 export const ActionText = styled.div`

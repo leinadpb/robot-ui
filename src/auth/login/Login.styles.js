@@ -8,7 +8,7 @@ export const LoginWrapper = styled.div`
   background-color: #23262e;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 5fr 4fr 1fr;
+  grid-template-rows: 5fr 5fr 1fr;
 `;
 
 export const Header = styled.div`

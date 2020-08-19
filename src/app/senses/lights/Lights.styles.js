@@ -38,6 +38,7 @@ export const AppItemWrapper = styled.div`
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
   &:hover {
     background-color: #363b50;
   }
