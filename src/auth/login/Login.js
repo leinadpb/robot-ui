@@ -23,9 +23,7 @@ const Login = ({ setLoggedUser }) => {
       password: password,
     });
     if (rs.success) {
-      console.log('set logged user', rs.data, setLoggedUser);
       if (!!setLoggedUser) {
-        console.log('set logged user', rs.data);
         setLoggedUser(rs.data);
       }
       setCookie('token', rs.data.accessToken, { path: '/' });
