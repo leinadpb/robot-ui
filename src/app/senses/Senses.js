@@ -24,7 +24,7 @@ const Senses = () => {
               <img src={TextureImage} alt="ROBI > Texture" />
             </AppItemWrapper>
           </AppItem>
-          <AppItem>
+          <AppItem onClick={() => history.push('/app/senses/sounds')}>
             <AppItemWrapper>
               <img src={SoundImage} alt="ROBI > Sound" />
             </AppItemWrapper>

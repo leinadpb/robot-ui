@@ -11,6 +11,7 @@ import { useCookies } from 'react-cookie';
 import useAuthAPI from './api/authAPI';
 import Senses from './app/senses/Senses';
 import Lights from './app/senses/lights/Lights';
+import Sounds from './app/senses/sounds/Sounds';
 
 const InstallButton = styled.div`
   width: 300px;
@@ -122,6 +123,7 @@ function App() {
         <Route path="/app" render={() => <Home user={loggedUser} />} exact />
         <Route path="/app/senses" render={() => <Senses user={loggedUser} />} exact />
         <Route path="/app/senses/lights" render={() => <Lights user={loggedUser} />} exact />
+        <Route path="/app/senses/sounds" render={() => <Sounds user={loggedUser} />} exact />
 
         <Route path="/" render={() => <Auth user={loggedUser} />} />
         <Route render={() => <NotFound user={loggedUser} />} />

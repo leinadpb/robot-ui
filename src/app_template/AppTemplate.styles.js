@@ -50,7 +50,7 @@ export const ContentArea = styled.div`
   height: 100%;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 4fr 7fr;
+  grid-template-rows: 3fr 7fr;
   @media screen and (orientation: landscape) {
     grid-template-rows: auto;
   }

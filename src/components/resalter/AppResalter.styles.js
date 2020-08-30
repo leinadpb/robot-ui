@@ -52,6 +52,9 @@ export const ResalterControl = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  img {
+    margin-right: 8px;
+  }
 `;
 
 export const CloseIconBox = styled.div`
