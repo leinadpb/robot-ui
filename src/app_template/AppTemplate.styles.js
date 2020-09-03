@@ -34,6 +34,9 @@ export const LogoWrapper = styled.div`
   @media screen and (orientation: landscape) {
     display: none;
   }
+  img {
+    max-width: 70%;
+  }
 `;
 
 export const ContentScreen = styled.div`
@@ -50,7 +53,7 @@ export const ContentArea = styled.div`
   height: 100%;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 3fr 7fr;
+  grid-template-rows: auto 1fr;
   @media screen and (orientation: landscape) {
     grid-template-rows: auto;
   }
