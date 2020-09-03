@@ -114,7 +114,7 @@ function App() {
   }
 
   return (
-    <AppTemplate>
+    <AppTemplate user={loggedUser}>
       <Switch>
         <Route path="/auth" render={() => <Auth user={loggedUser} />} exact />
         <Route path="/auth/login" render={() => <Login user={loggedUser} setLoggedUser={(user) => updateLoggedUser(user)} />} exact />
