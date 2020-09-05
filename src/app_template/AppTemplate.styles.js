@@ -7,7 +7,7 @@ export const AppTemplateWrapper = styled.div`
   display: grid;
   grid-template-columns: 80px 1fr 80px;
   grid-template-rows: 80px 1fr 80px;
-  grid-template-areas: 'accountArea . cameraArea' 'contentArea contentArea contentArea' 'backArea . homeArea';
+  grid-template-areas: 'accountArea patientArea patientArea' 'contentArea contentArea contentArea' 'backArea . homeArea';
 `;
 
 export const AccountArea = styled.div`
@@ -102,4 +102,15 @@ export const HomeArea = styled.div`
   svg {
     font-size: 3rem;
   }
+`;
+export const PatientInfo = styled.div`
+  grid-area: patientArea;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 16px;
+
+  color: white;
 `;

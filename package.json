@@ -14,15 +14,17 @@
     "emotion-theming": "^10.0.27",
     "formik": "^2.1.5",
     "react": "^16.13.1",
+    "react-compound-slider": "^2.5.0",
     "react-cookie": "^4.0.3",
     "react-dom": "^16.13.1",
     "react-icons": "^3.10.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "underscore": "^1.11.0"
   },
   "scripts": {
-    "start": "REACT_APP_STAGE=heroku react-scripts start",
+    "start": "REACT_APP_STAGE=local react-scripts start",
     "build": "REACT_APP_STAGE=heroku react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

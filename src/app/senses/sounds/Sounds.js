@@ -13,6 +13,10 @@ import SeaAnimalsImage from '../../../images/sense_icons/sea_animals.png';
 
 import AppResalter from '../../../components/resalter/AppResalter';
 
+import useSoundAPI from '../../../api/soundAPI';
+
+import * as _ from 'underscore';
+
 export const RAIN = 'RAIN';
 export const SEA = 'SEA';
 export const BIRDS = 'BIRDS';
@@ -20,14 +24,32 @@ export const LEAFS = 'LEAFS';
 export const WIND = 'WIND';
 export const SEA_ANIMALS = 'SEA_ANIMALS';
 
+const allowedValues = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
 const Adjuster = ({ sound }) => {
-  const onVolumenChange = (change) => {
-    if (!!sound) {
-      sound(change);
+  const [value, setValue] = useState(0);
+
+  // APIs
+  const { adjustVolumen, turnOffSound } = useSoundAPI();
+
+  const onVolumenChange = async (change) => {
+    if (allowedValues.includes(change)) {
+      setValue(change);
+      console.log(sound);
+      console.log('volumen:::', change);
+
+      await adjustVolumen(change);
+
+      if (change === 0) {
+        await turnOffSound();
+      }
     }
   };
+
+  const handleInputThrottled = _.throttle(onVolumenChange, 500);
+
   return (
-    <Slider defaultValue={33} step={33} size="lg" max={99} min={0} onChange={(number) => onVolumenChange(number)}>
+    <Slider value={value} defaultValue={0} step={10} size="lg" max={100} min={0} onChange={handleInputThrottled}>
       <SliderTrack style={{ height: '10px', borderRadius: '12%' }} />
       <SliderFilledTrack style={{ height: '10px', borderRadius: '12%' }} />
       <SliderThumb size={6} />
@@ -40,23 +62,31 @@ const Sounds = () => {
   const [selectedSound, setSelectedSound] = useState(undefined);
   const [currentSound, setCurrentSound] = useState(undefined);
 
+  const { playBirds, playSea, playLeafs, playRain, playSeaAnimals, playWind } = useSoundAPI();
+
   const handleSoundClick = (sound) => {
     if (sound === RAIN) {
+      playRain();
       setSelectedSound(RainImage);
       setCurrentSound(RAIN);
     } else if (sound === SEA) {
+      playSea();
       setSelectedSound(SeaImage);
       setCurrentSound(RAIN);
     } else if (sound === BIRDS) {
+      playBirds();
       setSelectedSound(BirdsImage);
       setCurrentSound(RAIN);
     } else if (sound === LEAFS) {
+      playLeafs();
       setSelectedSound(LeafsImage);
       setCurrentSound(RAIN);
     } else if (sound === WIND) {
+      playWind();
       setSelectedSound(WindImage);
       setCurrentSound(RAIN);
     } else if (sound === SEA_ANIMALS) {
+      playSeaAnimals();
       setSelectedSound(SeaAnimalsImage);
       setCurrentSound(RAIN);
     }
@@ -101,7 +131,7 @@ const Sounds = () => {
           </AppItems>
         </AppItemsCenteredBoxes>
       </SoundsWrapper>
-      <AppResalter sound={true} show={showResalter} onClose={() => setShowResalter(false)} topContent={selectedSound} bottomContent={<Adjuster color={currentSound} />} />
+      <AppResalter sound={true} show={showResalter} onClose={() => setShowResalter(false)} topContent={selectedSound} bottomContent={<Adjuster sound={currentSound} />} />
     </>
   );
 };

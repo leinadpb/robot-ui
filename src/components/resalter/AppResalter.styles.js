@@ -41,7 +41,7 @@ export const ResalterImage = styled.div`
   justify-content: center;
   align-items: center;
   img {
-    max-width: 70%;
+    max-width: ${(props) => (!!props.vibration ? '20%' : '70%')};
   }
 `;
 

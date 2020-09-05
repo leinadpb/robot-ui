@@ -1,8 +1,16 @@
 import React from 'react';
 import { SidebarWrapper, ClicableArea, Title, TitleImage, UserNameTitle, MenuItems, MenuItem } from './Sidebar.styles';
 import { BsPerson } from 'react-icons/bs';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Sidebar = ({ showSidebar, user }) => {
+  const history = useHistory();
+
+  const navigateTo = (path) => {
+    showSidebar(false);
+    history.push(path);
+  };
+
   return (
     <>
       <ClicableArea onClick={() => showSidebar(false)} />
@@ -16,6 +24,9 @@ const Sidebar = ({ showSidebar, user }) => {
           </UserNameTitle>
         </Title>
         <MenuItems>
+          <MenuItem onClick={() => navigateTo('/app/patients')}>
+            <span>Pacientes</span>
+          </MenuItem>
           <MenuItem>
             <span>Grabaciones</span>
           </MenuItem>
@@ -27,6 +38,9 @@ const Sidebar = ({ showSidebar, user }) => {
           </MenuItem>
           <MenuItem>
             <span>Configuración</span>
+          </MenuItem>
+          <MenuItem>
+            <span style={{ color: 'darkred' }}>Limpiar estados del robot</span>
           </MenuItem>
         </MenuItems>
       </SidebarWrapper>

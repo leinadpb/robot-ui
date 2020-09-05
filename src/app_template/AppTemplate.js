@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
-import { AppTemplateWrapper, AccountArea, CameraArea, ContentArea, BackArea, HomeArea, LogoWrapper, ContentScreen } from './AppTemplate.styles';
+import { AppTemplateWrapper, AccountArea, CameraArea, ContentArea, BackArea, HomeArea, LogoWrapper, ContentScreen, PatientInfo } from './AppTemplate.styles';
 import { BsPerson, BsReply, BsHouse } from 'react-icons/bs';
 import RobiLOGO from '../images/LOGO_ROBI.svg';
 import Sidebar from '../components/Sidebar/Sidebar';
 
-const AppTemplate = ({ children, user }) => {
+const AppTemplate = ({ children, user, selectedPatient }) => {
   const history = useHistory();
   const location = useLocation();
   const [useTemplate, setUseTemplate] = useState(true);
@@ -20,6 +20,14 @@ const AppTemplate = ({ children, user }) => {
     }
   }, [location]);
 
+  const goToHome = () => {
+    if (!!selectedPatient) {
+      history.push('/app/home');
+    } else {
+      history.push('/app/');
+    }
+  };
+
   if (useTemplate) {
     return (
       <>
@@ -28,6 +36,9 @@ const AppTemplate = ({ children, user }) => {
           <AccountArea onClick={() => showSidebar(true)}>
             <BsPerson />
           </AccountArea>
+          <PatientInfo>
+            <span>{!!selectedPatient ? selectedPatient.fullName : ''}</span>
+          </PatientInfo>
           <CameraArea>{/* <BsCamera /> */}</CameraArea>
           <ContentArea>
             <LogoWrapper>
@@ -38,7 +49,7 @@ const AppTemplate = ({ children, user }) => {
           <BackArea onClick={() => history.goBack()}>
             <BsReply />
           </BackArea>
-          <HomeArea onClick={() => history.push('/app')}>
+          <HomeArea onClick={() => goToHome()}>
             <BsHouse />
           </HomeArea>
         </AppTemplateWrapper>

@@ -57,3 +57,34 @@ export const AppItemWrapper = styled.div`
     }
   }
 `;
+
+export const TurnOffOnWrapper = styled.div`
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+`;
+
+export const TurnOn = styled.div`
+  margin: 2x;
+  padding: 4px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  span {
+    font-size: 1.5rem;
+    color: white;
+  }
+`;
+
+export const TurnOff = styled.div`
+  margin: 2px;
+  padding: 4px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  span {
+    font-size: 1.5rem;
+    color: #8f0010;
+  }
+`;

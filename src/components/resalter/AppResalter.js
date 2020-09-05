@@ -5,7 +5,7 @@ import SoundIcon from '../../images/sound_icon.png';
 
 const CLICABLE_AREA_ID = 'clicable_area_id';
 
-const AppResalter = ({ onClose, show, topContent, bottomContent, sound = false }) => {
+const AppResalter = ({ onClose, show, topContent, bottomContent, sound = false, vibration = false, customContent }) => {
   const hanldeClose = (e) => {
     if (!!e) {
       if (!!e.target.id && CLICABLE_AREA_ID === e.target.id) {
@@ -31,13 +31,20 @@ const AppResalter = ({ onClose, show, topContent, bottomContent, sound = false }
           <CloseIconBox>
             <BsX onClick={() => hanldeClose()} />
           </CloseIconBox>
-          <ResalterImage>
-            <img src={topContent} alt="functionality icon" />
-          </ResalterImage>
-          <ResalterControl>
-            {!!sound && <img src={SoundIcon} alt="volumen" style={{ maxWidth: '20%' }} />}
-            {bottomContent}
-          </ResalterControl>
+          {!!customContent ? (
+            customContent
+          ) : (
+            <>
+              {' '}
+              <ResalterImage vibration={vibration}>
+                <img src={topContent} alt="functionality icon" />
+              </ResalterImage>
+              <ResalterControl>
+                {!!sound && <img src={SoundIcon} alt="volumen" style={{ maxWidth: '20%' }} />}
+                {bottomContent}
+              </ResalterControl>
+            </>
+          )}
         </ResalterContent>
       </AppResalterModal>
     </AppResalterWrapper>

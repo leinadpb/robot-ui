@@ -12,6 +12,7 @@ import useAuthAPI from './api/authAPI';
 import Senses from './app/senses/Senses';
 import Lights from './app/senses/lights/Lights';
 import Sounds from './app/senses/sounds/Sounds';
+import Patients from './app/patients/Patients';
 
 const InstallButton = styled.div`
   width: 300px;
@@ -41,6 +42,7 @@ function App() {
   const history = useHistory();
   const [cookies] = useCookies(['token']);
   const [loggedUser, setLoggedUser] = useState(undefined);
+  const [selectedPatient, setSelectedPatient] = useState(undefined);
 
   const { info } = useAuthAPI();
 
@@ -60,7 +62,7 @@ function App() {
 
   useEffect(() => {
     const getUserInfo = async () => {
-      let rs = await info(`Bearer ${cookies.token}`);
+      let rs = await info(cookies.token);
       if (rs.success) {
         let userInfo = {
           ...rs.data,
@@ -105,6 +107,11 @@ function App() {
     setLoggedUser(user);
   };
 
+  const onSelectedPatient = (patient) => {
+    setSelectedPatient(patient);
+    history.push('/app/home');
+  };
+
   if (loading) {
     return (
       <div>
@@ -114,13 +121,14 @@ function App() {
   }
 
   return (
-    <AppTemplate user={loggedUser}>
+    <AppTemplate user={loggedUser} selectedPatient={selectedPatient}>
       <Switch>
         <Route path="/auth" render={() => <Auth user={loggedUser} />} exact />
         <Route path="/auth/login" render={() => <Login user={loggedUser} setLoggedUser={(user) => updateLoggedUser(user)} />} exact />
         <Route path="/about" render={() => <About user={loggedUser} />} exact />
 
-        <Route path="/app" render={() => <Home user={loggedUser} />} exact />
+        <Route path="/app" render={() => <Patients handleSelectedPatient={onSelectedPatient} user={loggedUser} />} exact />
+        <Route path="/app/home" render={() => <Home user={loggedUser} selectedPatient={selectedPatient} />} exact />
         <Route path="/app/senses" render={() => <Senses user={loggedUser} />} exact />
         <Route path="/app/senses/lights" render={() => <Lights user={loggedUser} />} exact />
         <Route path="/app/senses/sounds" render={() => <Sounds user={loggedUser} />} exact />

@@ -6,7 +6,7 @@ import TimerImage from '../../images/home_icons/timer.png';
 import VideoImage from '../../images/home_icons/video.png';
 import { useHistory } from 'react-router-dom';
 
-const Home = ({ user }) => {
+const Home = ({ user, selectedPatient }) => {
   const history = useHistory();
 
   return (

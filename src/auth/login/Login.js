@@ -26,10 +26,25 @@ const Login = ({ setLoggedUser }) => {
       if (!!setLoggedUser) {
         setLoggedUser(rs.data);
       }
-      setCookie('token', rs.data.accessToken, { path: '/' });
+      setCookie('token', 'Bearer ' + rs.data.accessToken, { path: '/' });
       history.push('/app');
+      setLoading(false);
+    } else {
+      setTimeout(async () => {
+        rs = await login({
+          username: username,
+          password: password,
+        });
+        if (rs.success) {
+          if (!!setLoggedUser) {
+            setLoggedUser(rs.data);
+          }
+          setCookie('token', 'Bearer ' + rs.data.accessToken, { path: '/' });
+          history.push('/app');
+        }
+        setLoading(false);
+      }, 5000);
     }
-    setLoading(false);
   };
 
   const onEmailChange = (target) => {
