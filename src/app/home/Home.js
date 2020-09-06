@@ -17,7 +17,7 @@ const Home = ({ user, selectedPatient }) => {
             <img src={SentidosImage} alt="ROBI > Sentidos" />
           </AppItemWrapper>
         </AppItem>
-        <AppItem>
+        <AppItem onClick={() => history.push('/app/progress')}>
           <AppItemWrapper>
             <img src={ProgressImage} alt="ROBI > Progress" />
           </AppItemWrapper>

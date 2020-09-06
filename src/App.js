@@ -13,6 +13,7 @@ import Senses from './app/senses/Senses';
 import Lights from './app/senses/lights/Lights';
 import Sounds from './app/senses/sounds/Sounds';
 import Patients from './app/patients/Patients';
+import Progress from './app/patients/progress/Progress';
 
 const InstallButton = styled.div`
   width: 300px;
@@ -129,6 +130,8 @@ function App() {
 
         <Route path="/app" render={() => <Patients handleSelectedPatient={onSelectedPatient} user={loggedUser} />} exact />
         <Route path="/app/home" render={() => <Home user={loggedUser} selectedPatient={selectedPatient} />} exact />
+        <Route path="/app/progress" render={() => <Progress user={loggedUser} selectedPatient={selectedPatient} />} exact />
+
         <Route path="/app/senses" render={() => <Senses user={loggedUser} />} exact />
         <Route path="/app/senses/lights" render={() => <Lights user={loggedUser} />} exact />
         <Route path="/app/senses/sounds" render={() => <Sounds user={loggedUser} />} exact />
