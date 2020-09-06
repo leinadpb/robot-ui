@@ -113,6 +113,10 @@ function App() {
     history.push('/app/home');
   };
 
+  const onUpdateProgress = (patient) => {
+    setSelectedPatient(patient);
+  };
+
   if (loading) {
     return (
       <div>
@@ -130,7 +134,7 @@ function App() {
 
         <Route path="/app" render={() => <Patients handleSelectedPatient={onSelectedPatient} user={loggedUser} />} exact />
         <Route path="/app/home" render={() => <Home user={loggedUser} selectedPatient={selectedPatient} />} exact />
-        <Route path="/app/progress" render={() => <Progress user={loggedUser} selectedPatient={selectedPatient} />} exact />
+        <Route path="/app/progress" render={() => <Progress user={loggedUser} selectedPatient={selectedPatient} onUpdateProgress={onUpdateProgress} />} exact />
 
         <Route path="/app/senses" render={() => <Senses user={loggedUser} />} exact />
         <Route path="/app/senses/lights" render={() => <Lights user={loggedUser} />} exact />

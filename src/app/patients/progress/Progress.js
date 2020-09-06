@@ -1,39 +1,59 @@
 import React, { useState } from 'react';
 import { ProgressWrapper } from './Progress.styles';
 import ProgressComponent from './ProgressComponent';
+import usePatientAPI from '../../../api/patientAPI';
 
-const Progress = ({ selectedPatient }) => {
+const Progress = ({ selectedPatient, onUpdateProgress }) => {
   const [visual, setVisual] = useState(!!selectedPatient && !!selectedPatient.visualProgress ? selectedPatient.visualProgress : 0);
   const [tactil, setTactil] = useState(!!selectedPatient && !!selectedPatient.touchProgress ? selectedPatient.touchProgress : 0);
   const [auditivo, setAuditivo] = useState(!!selectedPatient && !!selectedPatient.auditiveProgress ? selectedPatient.auditiveProgress : 0);
   const [vestibular, setVestibular] = useState(!!selectedPatient && !!selectedPatient.vestibularProgress ? selectedPatient.vestibularProgress : 0);
 
-  const handleVisualChange = (amount, idx) => {
-    console.log('visual change: ', amount, idx);
-    setTimeout(() => {
+  // APIs
+  const { updateAuditive, updateTouch, updateVestibular, updateVisual } = usePatientAPI();
+
+  const handleVisualChange = async (amount, idx) => {
+    let rs = await updateVisual(selectedPatient.id, amount);
+    if (rs.success) {
       setVisual(amount);
-    }, 150);
+      onUpdateProgress({
+        ...selectedPatient,
+        visualProgress: amount,
+      });
+    }
   };
 
-  const handleTactilChange = (amount, idx) => {
-    console.log('tactil change: ', amount, idx);
-    setTimeout(() => {
+  const handleTactilChange = async (amount, idx) => {
+    let rs = await updateTouch(selectedPatient.id, amount);
+    if (rs.success) {
       setTactil(amount);
-    }, 150);
+      onUpdateProgress({
+        ...selectedPatient,
+        touchProgress: amount,
+      });
+    }
   };
 
-  const handleVestibularChange = (amount, idx) => {
-    console.log('visual change: ', amount, idx);
-    setTimeout(() => {
+  const handleVestibularChange = async (amount, idx) => {
+    let rs = await updateVestibular(selectedPatient.id, amount);
+    if (rs.success) {
       setVestibular(amount);
-    }, 150);
+      onUpdateProgress({
+        ...selectedPatient,
+        vestibularProgress: amount,
+      });
+    }
   };
 
-  const handleAuditiveChange = (amount, idx) => {
-    console.log('auditive change: ', amount, idx);
-    setTimeout(() => {
+  const handleAuditiveChange = async (amount, idx) => {
+    let rs = await updateAuditive(selectedPatient.id, amount);
+    if (rs.success) {
       setAuditivo(amount);
-    }, 150);
+      onUpdateProgress({
+        ...selectedPatient,
+        auditiveProgress: amount,
+      });
+    }
   };
 
   return (
