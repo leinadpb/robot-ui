@@ -79,16 +79,16 @@ const PatientForm = ({ patient, updatedPatient, deletedPatient, createdPatient }
       </FormControl>
       <Actions>
         {!!isCreating ? (
-          <Action onClick={onCreate} disabled={loading}>
+          <Action onClick={onCreate} disabled={loading} variant="solid" variantColor="green" size="md">
             <span>Crear</span>
           </Action>
         ) : (
           <>
-            <Action onClick={onUpdate} disabled={loading}>
-              <span>Guardar</span>
+            <Action onClick={onUpdate} disabled={loading} variant="solid" variantColor="green" size="md">
+              <span style={{ color: 'white' }}>Guardar</span>
             </Action>
-            <Action onClick={onRemove} disabled={loading}>
-              <span>Eliminar</span>
+            <Action onClick={onRemove} disabled={loading} variant="solid" variantColor="red" size="md">
+              <span style={{ color: 'white' }}>Eliminar</span>
             </Action>
           </>
         )}
