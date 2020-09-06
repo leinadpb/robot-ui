@@ -9,6 +9,7 @@ export const PatientsWrapper = styled.div`
 export const PatientBoxWithAction = styled.div`
   width: 100%;
   height: auto;
+  max-height: 40px;
   display: grid;
   grid-template-rows: auto;
   grid-template-columns: auto 60px;
