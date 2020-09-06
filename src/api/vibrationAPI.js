@@ -5,7 +5,7 @@ const turnOnOptions = () => {
     method: 'POST',
     url: '/v1/robi',
     data: {
-      robotPath: `/v1/vibration/on`,
+      robotPath: `/v1/vibration/start`,
     },
     updateStore: false,
   };
@@ -16,7 +16,7 @@ const turnOffOptions = () => {
     method: 'POST',
     url: '/v1/robi',
     data: {
-      robotPath: `/v1/vibration/off`,
+      robotPath: `/v1/vibration/stop`,
     },
     updateStore: false,
   };
