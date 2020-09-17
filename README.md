@@ -12,5 +12,6 @@ This apps lets you:
 5. Record video/audio from raspberry pi using a mic and the Pi Camera module v2.
 6. Create/update/delete patients.
 7. Adjust patient's score.
+8. Turn on/off vibration motors
 
 Happy coding :)
