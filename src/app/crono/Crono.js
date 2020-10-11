@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import TimerImage from '../../images/home_icons/timer.png';
 import { AppItemWrapper } from '../home/Home.styles';
@@ -60,14 +60,6 @@ export const Action = styled.div`
 `;
 
 const Crono = ({ hour, minute, second, timer, state, setHour, setMinute, setSecond, setTimer, setState }) => {
-  //   const [hour, setHour] = useState(0);
-  //   const [minute, setMinute] = useState(0);
-  //   const [second, setSecond] = useState(0);
-
-  //   const [state, setState] = useState('stop');
-
-  //   const [timer, setTimer] = useState();
-
   const formatTime = (time) => {
     if (time.toString().length <= 1) {
       return `0${time}`;
@@ -86,29 +78,6 @@ const Crono = ({ hour, minute, second, timer, state, setHour, setMinute, setSeco
       setTimer(timerRef);
     }
   };
-
-  //   useEffect(() => {
-  //     if (state === 'running') {
-  //       let h = hour;
-  //       let m = minute;
-  //       let s = second;
-  //       if (s >= 60) {
-  //         setSecond(0);
-  //         m++;
-  //       }
-  //       if (m >= 60) {
-  //         m = 0;
-  //         h++;
-  //       }
-  //       if (h >= 24) {
-  //         // do nothing
-  //       } else {
-  //         setMinute(m);
-  //         setHour(h);
-  //         console.log(h, m, s);
-  //       }
-  //     }
-  //   }, [second]);
 
   const stopTimer = () => {
     if (!!timer) {

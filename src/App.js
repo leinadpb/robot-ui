@@ -74,6 +74,7 @@ function App() {
         console.log(h, m, s);
       }
     }
+    // eslint-disable-next-line
   }, [second]);
 
   const { info } = useAuthAPI();
