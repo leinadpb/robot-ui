@@ -25,7 +25,7 @@ export const AppItem = styled.div`
 `;
 
 export const AppItemWrapper = styled.div`
-  width: 70%;
+  width: ${(props) => (!!props.width ? props.width : '70%')};
   height: 70%;
   background-color: #2d3247;
   border-radius: 12%;

@@ -14,6 +14,7 @@ import Lights from './app/senses/lights/Lights';
 import Sounds from './app/senses/sounds/Sounds';
 import Patients from './app/patients/Patients';
 import Progress from './app/patients/progress/Progress';
+import Crono from './app/crono/Crono';
 
 const InstallButton = styled.div`
   width: 300px;
@@ -44,6 +45,36 @@ function App() {
   const [cookies] = useCookies(['token']);
   const [loggedUser, setLoggedUser] = useState(undefined);
   const [selectedPatient, setSelectedPatient] = useState(undefined);
+
+  // Crono state
+  const [hour, setHour] = useState(0);
+  const [minute, setMinute] = useState(0);
+  const [second, setSecond] = useState(0);
+  const [cronoState, setCronoState] = useState('stop');
+  const [timer, setTimer] = useState();
+
+  useEffect(() => {
+    if (cronoState === 'running') {
+      let h = hour;
+      let m = minute;
+      let s = second;
+      if (s >= 60) {
+        setSecond(0);
+        m++;
+      }
+      if (m >= 60) {
+        m = 0;
+        h++;
+      }
+      if (h >= 24) {
+        // do nothing
+      } else {
+        setMinute(m);
+        setHour(h);
+        console.log(h, m, s);
+      }
+    }
+  }, [second]);
 
   const { info } = useAuthAPI();
 
@@ -135,6 +166,26 @@ function App() {
         <Route path="/app" render={() => <Patients handleSelectedPatient={onSelectedPatient} user={loggedUser} />} exact />
         <Route path="/app/home" render={() => <Home user={loggedUser} selectedPatient={selectedPatient} />} exact />
         <Route path="/app/progress" render={() => <Progress user={loggedUser} selectedPatient={selectedPatient} onUpdateProgress={onUpdateProgress} />} exact />
+
+        <Route
+          path="/app/crono"
+          render={() => (
+            <Crono
+              user={loggedUser}
+              hour={hour}
+              minute={minute}
+              second={second}
+              timer={timer}
+              state={cronoState}
+              setHour={setHour}
+              setMinute={setMinute}
+              setSecond={setSecond}
+              setTimer={setTimer}
+              setState={setCronoState}
+            />
+          )}
+          exact
+        />
 
         <Route path="/app/senses" render={() => <Senses user={loggedUser} />} exact />
         <Route path="/app/senses/lights" render={() => <Lights user={loggedUser} />} exact />

@@ -22,7 +22,7 @@ const Home = ({ user, selectedPatient }) => {
             <img src={ProgressImage} alt="ROBI > Progress" />
           </AppItemWrapper>
         </AppItem>
-        <AppItem>
+        <AppItem onClick={() => history.push('/app/crono')}>
           <AppItemWrapper>
             <img src={TimerImage} alt="ROBI > Timer" />
           </AppItemWrapper>
